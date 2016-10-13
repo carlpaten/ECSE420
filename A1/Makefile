@@ -1,16 +1,10 @@
-CFLAGS += -std=gnu11
+CFLAGS += -std=c++14
 CFLAGS += -fopenmp
-CFLAGS += -pthread
 CFLAGS += -Wall
 CFLAGS += -Wextra
 
-all: rectify_omp rectify
-
-rectify: rectify_omp
-	cp rectify_omp rectify
-
-rectify_omp: rectify_omp.c
-	gcc $(CFLAGS) lodepng.c rectify_omp.c -o rectify_omp
+ass1_omp: ass1_omp.cpp lodepng.cpp
+	g++ -fopenmp $(CFLAGS) lodepng.cpp ass1_omp.cpp -o ass1_omp
 
 clean:
-	rm rectify rectify_omp
+	rm ass1_omp

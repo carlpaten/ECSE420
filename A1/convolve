@@ -1,0 +1,2 @@
+#!/bin/sh
+./ass1_omp convolution "$1" "$2" "$3"

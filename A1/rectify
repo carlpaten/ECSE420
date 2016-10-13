@@ -1,0 +1,2 @@
+#!/bin/sh
+./ass1_omp rectification "$1" "$2" "$3"

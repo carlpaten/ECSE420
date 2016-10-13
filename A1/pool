@@ -1,0 +1,2 @@
+#!/bin/sh
+./ass1_omp max-pooling "$1" "$2" "$3"

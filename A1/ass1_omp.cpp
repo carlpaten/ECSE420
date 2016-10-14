@@ -112,9 +112,9 @@ void convolve(Image* input, Image* output, float weightmatrix[3][3], unsigned in
 					Pixel* p = input->get(i + k, j + l);
 					//printf("Red contribution of (%d, %d) to (%d, %d) is %f\n", i + k - 1, j + l - 1, i, j, p->R * w[k][l]); 
 
-					rSum += p->R * wm[k][l];
-					gSum += p->G * wm[k][l];
-					bSum += p->B * wm[k][l];
+					rSum += p->R * wm[l][k];
+					gSum += p->G * wm[l][k];
+					bSum += p->B * wm[l][k];
 				}
 			}
 			Pixel* p = output->get(i, j);
@@ -131,6 +131,21 @@ auto time_execution(std::function<void()> f) {
 	f();
 	auto t2 = clock();
 	return t2 - t1;
+}
+
+void symmetric_difference(Image* input1, Image* input2, Image* output) {
+	for(unsigned int i = 0; i < output->width; i++) {
+		for(unsigned int j = 0; j < output->height; j++) {
+			Pixel* p1 = input1->get(i, j);
+			Pixel* p2 = input2->get(i, j);
+			Pixel* po = output->get(i, j);
+
+			po->R = abs((int) (p1->R) - (int) (p2 -> R)); 
+			po->G = abs((int) (p1->G) - (int) (p2 -> G)); 
+			po->B = abs((int) (p1->B) - (int) (p2 -> B)); 
+			po->A = 255;
+		}
+	}
 }
 
 int main(int argc, char *argv[]) {

@@ -2,6 +2,7 @@ CFLAGS += -std=c++14
 CFLAGS += -fopenmp
 CFLAGS += -Wall
 CFLAGS += -Wextra
+CFLAGS += -O3
 
 .PHONY: all
 all: ass1_omp
@@ -12,3 +13,8 @@ ass1_omp: ass1_omp.cpp lodepng.cpp
 
 clean:
 	rm ass1_omp
+
+.PHONY: test_convolve
+test_convolve: ass1_omp
+	./convolve test.png test_convolve2.png
+	./test_equality test_convolve.png test_convolve2.png

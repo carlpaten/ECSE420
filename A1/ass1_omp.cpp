@@ -118,9 +118,9 @@ void convolve(Image* input, Image* output, float weightmatrix[3][3], unsigned in
 				}
 			}
 			Pixel* p = output->get(i, j);
-			p->R = std::lround(clamp<float>(rSum, 0.0, 255.0));
-			p->G = std::lround(clamp<float>(gSum, 0.0, 255.0));
-			p->B = std::lround(clamp<float>(bSum, 0.0, 255.0));
+			p->R = /* std::lround */ (unsigned char) (clamp<float>(rSum, 0.0, 255.0));
+			p->G = /* std::lround */ (unsigned char) (clamp<float>(gSum, 0.0, 255.0));
+			p->B = /* std::lround */ (unsigned char) (clamp<float>(bSum, 0.0, 255.0));
 			p->A = 255;
 		}
 	}
